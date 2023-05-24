@@ -1,3 +1,15 @@
+<?php
+require_once("config.php"); 
+
+
+$data = new Config();
+
+$all = $data -> obteinAll();
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -56,15 +68,34 @@
               <th scope="col">NOMBREs</th>
               <th scope="col">DIRECCION</th>
               <th scope="col">LOGROS</th>
-              <th scope="col">DETALLE</th>
+              <th scope="col">SER</th>
+              <th scope="col">INGLES</th>
+              <th scope="col">REVIEW</th>
+              <th scope="col">SKILLS</th>
+              <th scope="col">BORRAR</th>
+
             </tr>
           </thead>
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
          
-       
-
+          <?php
+            foreach($all as $key => $val){
+          ?>
+          <tr>
+            <td><?php echo $val['id'] ?></td>
+            <td><?php echo $val['nombres'] ?></td>
+            <td><?php echo $val['direccion'] ?></td>
+            <td><?php echo $val['logros'] ?></td>
+            <td><?php echo $val['ser'] ?></td>
+            <td><?php echo $val['ingles'] ?></td>
+            <td><?php echo $val['review'] ?></td>
+            <td><?php echo $val['skills'] ?></td>
+            <td>/<a class= "btn text-primary " href="borrarEstudiantes.php?id=<?=$val['id']?>&req=delete">Borrar</a>/</td>
+          </tr> 
+              
+          <?php } ?>
           </tbody>
         
         </table>
@@ -125,6 +156,43 @@
                  
                 />
               </div>
+              <div class="mb-1 col-12">
+                <label for="ser" class="form-label">Ser</label>
+                <input 
+                  type="text"
+                  id="ser"
+                  name="ser"
+                  class="form-control"  
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="ingles" class="form-label">Ingles</label>
+                <input 
+                  type="text"
+                  id="ingles"
+                  name="ingles"
+                  class="form-control"  
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="review" class="form-label">Review</label>
+                <input 
+                  type="text"
+                  id="review"
+                  name="review"
+                  class="form-control"  
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="skills" class="form-label">Skills</label>
+                <input 
+                  type="text"
+                  id="skills"
+                  name="skills"
+                  class="form-control"  
+                />
+              </div>
+              
 
               <div class=" col-12 m-2">
                 <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>
